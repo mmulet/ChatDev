@@ -9,6 +9,7 @@ dependencies = [
     "colorama==0.4.6",
     "easydict==1.10",
     "faiss-cpu==1.7.4",
+    "fire>=0.7.1",
     "flask==2.3.2",
     "flask-socketio==5.3.4",
     "graphviz==0.20.1",
