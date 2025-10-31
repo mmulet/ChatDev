@@ -1,7 +1,7 @@
 import random
 import time
 import math
-from graphviz import Digraph
+# from graphviz import Digraph
 import subprocess
 
 class Edge:
@@ -102,16 +102,16 @@ class Graph:
         self.edges = [Edge(edge.target, edge.source) for edge in self.edges]
         return self
 
-    def view(self, reverse=False):
-        """Visualizes the graph using Graphviz and saves it to a file."""
-        graph_viz = Digraph(format="png", node_attr={"shape": "circle"}, edge_attr={"arrowhead": "normal"})
-        llist = self.get_list(reverse)
-        for (u, v) in llist:
-            graph_viz.edge(str(u), str(v))
-        timestamp = time.strftime("%Y%m%d%H%M%S", time.localtime())
-        graph_viz.render(directory="./tmp/generated_graphs", filename="graph_{}_{}_{}".format(self.name, self.node_num, timestamp))
-        self.display_image_with_imgcat(f"./tmp/generated_graphs/graph_{self.name}_{self.node_num}_{timestamp}.png")
-        return self
+    # def view(self, reverse=False):
+    #     """Visualizes the graph using Graphviz and saves it to a file."""
+    #     graph_viz = Digraph(format="png", node_attr={"shape": "circle"}, edge_attr={"arrowhead": "normal"})
+    #     llist = self.get_list(reverse)
+    #     for (u, v) in llist:
+    #         graph_viz.edge(str(u), str(v))
+    #     timestamp = time.strftime("%Y%m%d%H%M%S", time.localtime())
+    #     graph_viz.render(directory="./tmp/generated_graphs", filename="graph_{}_{}_{}".format(self.name, self.node_num, timestamp))
+    #     self.display_image_with_imgcat(f"./tmp/generated_graphs/graph_{self.name}_{self.node_num}_{timestamp}.png")
+    #     return self
 
     def generate_graph(self, reverse=False):
         """Generates a graph based on the specified topology and number of nodes."""
@@ -159,4 +159,4 @@ if __name__ == "__main__":
     graph = Graph(node_num=args.node_num, topo=args.topology)
     graph_structure = graph.generate_graph(args.reverse)
     print("graph:", graph_structure)  # This will replace the graph field in config.yaml
-    graph.view(args.reverse)
+    # graph.view(args.reverse)

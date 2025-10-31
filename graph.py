@@ -14,7 +14,7 @@ from camel.typing import ModelType, RoleType
 from chatdev.codes import Codes
 from chatdev.richshell import color_code_diff, justify_in_box
 from chatdev.waiting import Pool
-from graphviz import Digraph
+# from graphviz import Digraph
 import subprocess
 
 now = time.strftime("%Y%m%d%H%M%S", time.localtime())
@@ -290,27 +290,28 @@ class Graph:
 
         if self.circular_check():
             print("ERROR: The graph has circular dependency!")
-            self.view(view=True)
+            # self.view(view=True)
             exit(1)
         else:
-            self.view()
+            # self.view()
+            pass
         self.depth = self.agent_deployment(type_)
     
     def display_image_with_imgcat(self, image_path):
         """Display the image with imgcat"""
         subprocess.run(["imgcat", image_path])
 
-    def view(self, view: bool = False) -> None:
-        """Visualize the graph using Graphviz and save it to a file."""
-        graph_viz = Digraph(format="png", node_attr={"shape": "circle"}, edge_attr={"arrowhead": "normal"})
-        for node in self.nodes.values():
-            for successor in node.successors:
-                graph_viz.edge(str(node.id), str(successor.id))
-        if view:
-            graph_viz.view(directory=f"./MacNetLog/{self.now}", filename=f"graph_{self.now}")
-        graph_viz.render(directory=f"./MacNetLog/{self.now}", filename=f"graph_{self.now}")
-        print("MacNet starts running based on the following graph:")
-        self.display_image_with_imgcat(f"./MacNetLog/{self.now}/graph_{self.now}.png")
+    # def view(self, view: bool = False) -> None:
+    #     """Visualize the graph using Graphviz and save it to a file."""
+    #     graph_viz = Digraph(format="png", node_attr={"shape": "circle"}, edge_attr={"arrowhead": "normal"})
+    #     for node in self.nodes.values():
+    #         for successor in node.successors:
+    #             graph_viz.edge(str(node.id), str(successor.id))
+    #     if view:
+    #         graph_viz.view(directory=f"./MacNetLog/{self.now}", filename=f"graph_{self.now}")
+    #     graph_viz.render(directory=f"./MacNetLog/{self.now}", filename=f"graph_{self.now}")
+    #     print("MacNet starts running based on the following graph:")
+    #     self.display_image_with_imgcat(f"./MacNetLog/{self.now}/graph_{self.now}.png")
 
     def execute(self, prompt: str, name: str) -> None:
         """Execute the reasoning process for the graph."""

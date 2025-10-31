@@ -1,0 +1,12 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start VLLMServer",
+            "type": "shell",
+            "command": "source ${workspaceFolder}/.venv/bin/activate && CUDA_VISIBLE_DEVICES=0,1,2,3 vllm serve unsloth/Qwen2.5-0.5B-Instruct --dtype auto --api-key token-abc123 --data-parallel-size 4 --served-model-name gpt-4o",
+        }
+    ]
+}
