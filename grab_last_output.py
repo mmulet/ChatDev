@@ -7,7 +7,7 @@ import os
 import sys
 from fire import Fire # type: ignore
 
-def main(macnet_output_folder: str | None = None, save_to_file: str | None = None):
+def grab_last_output(macnet_output_folder: str | None = None, save_to_file: str | None = None):
     """
     Grab the last output code block from each agent's log file and save it as the final code.
     Args:
@@ -50,4 +50,4 @@ def main(macnet_output_folder: str | None = None, save_to_file: str | None = Non
         break
 
 if __name__ == "__main__":
-    Fire(main)
+    Fire(grab_last_output)
